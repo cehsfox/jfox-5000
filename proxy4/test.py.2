@@ -1,0 +1,22 @@
+import re
+
+rfile = open('domain.txt', 'r')
+wfile = open('domain2.txt', 'w')
+
+for line in rfile:
+    if re.search(r'(\w+\.)(\w+\.)uk', line):
+        match = re.search(r'(\w+\.)(\w+\.)uk', line)
+        wfile.write(match.group(2)+match.group(3))
+    elif re.search(r'(\w+\.)(\w+\.)(\w+\.)(\D+$)', line):
+        match = re.search(r'(\w+\.)(\w+\.)(\w+\.)(\D+$)', line)
+        print("after: "+match.group(3)+match.group(4))
+        wfile.write(match.group(3)+match.group(4))
+    elif re.search(r'(\w+\.)(\w+\.)(\D+$)', line):
+        match = re.search(r'(\w+\.)(\w+\.)(\D+$)', line)
+        print("before: "+line)
+        print("after: "+match.group(2)+match.group(3))  
+        wfile.write(match.group(2)+match.group(3))     
+    else:
+        wfile.write(line)
+rfile.close()
+wfile.close()

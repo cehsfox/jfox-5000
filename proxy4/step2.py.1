@@ -1,0 +1,13 @@
+import re
+
+rfile = open('domain.txt', 'r')
+wfile = open('domain2.txt', 'w')
+
+for line in rfile:
+    if re.search(r'(\w+\.)(\w+\.)(\D+$)', line):
+        print(line)
+        match = re.search(r'(\w+\.)(\w+\.)(\D+$)', line)
+        print("fred: "+match.group(0))
+ 
+rfile.close()
+wfile.close()
